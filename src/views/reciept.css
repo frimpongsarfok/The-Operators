@@ -181,8 +181,8 @@
   flex-shrink: 1;
 }
 .reciept-subtract {
-  top: -36px;
-  left: -35px;
+  top: -24px;
+  left: 70px;
   width: 687px;
   height: 881px;
   position: absolute;
@@ -190,8 +190,8 @@
 }
 .reciept-receipt-card {
   gap: 39.969417572021484px;
-  top: 457px;
-  left: 317px;
+  top: 485px;
+  left: 513px;
   width: 581px;
   height: 672px;
   display: flex;
@@ -545,17 +545,6 @@
 .reciept-cancel {
   width: 162px;
   height: 46px;
-}
-.reciept-faq {
-  flex: 0 0 auto;
-  width: 100%;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.reciept-faq-container {
-  border: 2px dashed rgba(120, 120, 120, 0.4);
 }
 .reciept-container3 {
   gap: var(--dl-space-space-unit);

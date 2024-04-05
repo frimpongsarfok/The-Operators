@@ -174,8 +174,8 @@
   background-color: rgba(255, 255, 255, 1);
 }
 .cart-payment-details {
-  top: 245px;
-  left: 21px;
+  top: 253px;
+  left: 108px;
   width: 533px;
   height: 622px;
   display: flex;
@@ -187,14 +187,14 @@
 .cart-payment-title {
   top: 25px;
   left: 0px;
-  color: rgba(0, 0, 0, 1);
+  color: rgb(0, 0, 0);
   width: 342px;
   height: auto;
   position: absolute;
   font-size: 40px;
   font-style: Bold;
   text-align: left;
-  font-family: Inter;
+  font-family: "Inter";
   font-weight: 700;
   line-height: normal;
   font-stretch: normal;
@@ -265,8 +265,8 @@
   text-decoration: none;
 }
 .cart-circle-designs {
-  top: 321px;
-  right: 57px;
+  top: 310px;
+  left: 1163px;
   width: 375px;
   height: 251px;
   display: flex;
@@ -289,8 +289,8 @@
   position: absolute;
 }
 .cart-stating-label {
-  top: 282px;
-  left: 661px;
+  top: 292px;
+  left: 1003px;
   color: rgba(87, 87, 87, 1);
   height: auto;
   position: absolute;
@@ -304,8 +304,8 @@
   text-decoration: none;
 }
 .cart-room {
-  top: 602px;
-  left: 658px;
+  top: 603px;
+  left: 1045px;
   color: rgba(0, 0, 0, 1);
   height: auto;
   position: absolute;
@@ -319,9 +319,9 @@
   text-decoration: none;
 }
 .cart-room-price {
-  top: 603px;
+  top: 605px;
+  left: 1407px;
   color: rgba(0, 0, 0, 1);
-  right: 141px;
   height: auto;
   position: absolute;
   font-size: 24px;
@@ -334,8 +334,8 @@
   text-decoration: none;
 }
 .cart-total-price2 {
-  top: 396px;
-  left: 824px;
+  top: 395px;
+  left: 1237px;
   color: rgb(0, 0, 0);
   height: auto;
   position: absolute;
@@ -348,14 +348,14 @@
   font-stretch: normal;
   text-decoration: none;
 }
-.cart-text09 {
+.cart-text08 {
   font-size: 50px;
   text-transform: uppercase;
 }
 .cart-tax-amount {
-  top: 683px;
+  top: 689px;
+  left: 1408px;
   color: rgba(0, 0, 0, 1);
-  right: 171px;
   height: auto;
   position: absolute;
   font-size: 24px;
@@ -368,9 +368,9 @@
   text-decoration: none;
 }
 .cart-total-price1 {
-  top: 734px;
+  top: 740px;
+  left: 1408px;
   color: rgba(0, 0, 0, 1);
-  right: 141px;
   height: auto;
   position: absolute;
   font-size: 24px;
@@ -383,8 +383,8 @@
   text-decoration: none;
 }
 .cart-totallabel {
-  top: 731px;
-  left: 868px;
+  top: 734px;
+  left: 1249px;
   color: rgba(0, 0, 0, 1);
   height: auto;
   position: absolute;
@@ -398,8 +398,8 @@
   text-decoration: none;
 }
 .cart-tax-label {
-  top: 683px;
-  left: 866px;
+  top: 688px;
+  left: 1266px;
   color: rgba(0, 0, 0, 1);
   height: auto;
   position: absolute;
@@ -413,8 +413,8 @@
   text-decoration: none;
 }
 .cart-expiry {
-  top: 639px;
-  left: 21px;
+  top: 652px;
+  left: 110px;
   width: 174px;
   height: 57px;
   display: flex;
@@ -427,8 +427,8 @@
   height: 50%;
 }
 .cart-checkout-button {
-  top: 726px;
-  left: 21px;
+  top: 745px;
+  left: 106px;
   width: 286px;
   height: 180px;
   display: flex;
@@ -447,8 +447,8 @@
   background-color: #f5a034;
 }
 .cart-card-number {
-  top: 542px;
-  left: 21px;
+  top: 555px;
+  left: 110px;
   width: 370px;
   height: 83px;
   display: flex;
@@ -461,8 +461,8 @@
   height: 32px;
 }
 .cart-card-holders-name {
-  top: 447px;
-  left: 22px;
+  top: 453px;
+  left: 111px;
   width: 370px;
   height: 83px;
   display: flex;
@@ -474,24 +474,10 @@
   width: 351px;
   height: 32px;
 }
-.cart-cvc {
-  top: 639px;
-  left: 255px;
-  width: 174px;
-  height: 57px;
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-  flex-shrink: 1;
-}
-.cart-cvc1 {
-  width: 145px;
-  height: 50%;
-}
 .cart-clear-cart-button {
-  right: 17px;
+  top: 807px;
+  right: 231px;
   width: 286px;
-  bottom: 228px;
   height: 180px;
   display: flex;
   position: absolute;
@@ -511,19 +497,19 @@
   border-width: 1px;
   background-color: rgb(245, 160, 52);
 }
-.cart-text14 {
+.cart-text13 {
   color: #ffffff;
 }
 .cart-vector1 {
-  top: 653px;
-  right: 85px;
+  top: 668px;
+  left: 1259px;
   width: 409px;
   height: 1px;
   position: absolute;
 }
-.cart-cvc2 {
-  top: 639px;
-  left: 255px;
+.cart-cvc {
+  top: 653px;
+  left: 343px;
   width: 174px;
   height: 57px;
   display: flex;
@@ -531,7 +517,7 @@
   align-items: flex-start;
   flex-shrink: 1;
 }
-.cart-cvc3 {
+.cart-cvc1 {
   width: 145px;
   height: 50%;
 }
@@ -543,20 +529,28 @@
   align-items: center;
   flex-direction: column;
 }
-.cart-image {
-  width: 1200px;
-  height: 231px;
-  object-fit: cover;
-}
 .cart-container2 {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.cart-container3 {
   border: 2px dashed rgba(120, 120, 120, 0.4);
   display: flex;
   align-items: flex-end;
   justify-content: center;
 }
+.cart-image {
+  width: 100%;
+  height: 231px;
+  object-fit: cover;
+}
 .cart-receipt-page-link {
-  top: 862px;
-  right: 131px;
+  top: 900px;
+  left: 1019px;
   width: 96px;
   height: 34px;
   display: flex;
@@ -569,8 +563,8 @@
   text-decoration: none;
 }
 .cart-group1 {
-  top: 862px;
-  left: 703px;
+  top: 900px;
+  left: 748px;
   width: 274px;
   height: 30px;
   display: flex;
@@ -579,7 +573,7 @@
   flex-shrink: 1;
   margin-right: 84px;
 }
-.cart-container3 {
+.cart-container4 {
   gap: var(--dl-space-space-unit);
   display: flex;
   max-width: var(--dl-size-size-maxwidth);
@@ -613,7 +607,7 @@
   border-left-width: 0px;
   border-right-width: 0px;
 }
-.cart-container4 {
+.cart-container5 {
   flex: 0 0 auto;
   width: 100%;
   display: flex;
@@ -682,12 +676,12 @@
     margin-right: 0px;
     margin-bottom: var(--dl-space-space-oneandhalfunits);
   }
-  .cart-container4 {
+  .cart-container5 {
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
   }
-  .cart-text21 {
+  .cart-text20 {
     margin-bottom: var(--dl-space-space-oneandhalfunits);
   }
 }
@@ -705,12 +699,12 @@
     margin-top: var(--dl-space-space-oneandhalfunits);
     margin-bottom: var(--dl-space-space-oneandhalfunits);
   }
-  .cart-container4 {
+  .cart-container5 {
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
   }
-  .cart-text21 {
+  .cart-text20 {
     text-align: center;
     margin-bottom: var(--dl-space-space-oneandhalfunits);
   }

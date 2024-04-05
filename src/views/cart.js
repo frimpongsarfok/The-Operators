@@ -100,7 +100,7 @@ const Cart = (props) => {
         <div className="cart-mac-book-pro141">
           <div className="cart-payment-details">
             <span className="cart-payment-title">
-              <span>Let’s Make Payment</span>
+              Let’s Make        Payment
             </span>
             <span className="cart-payment-subtitle-1">
               <span>Cardholder’s Name</span>
@@ -145,7 +145,7 @@ const Cart = (props) => {
                 }}
               />
             </span>
-            <span className="cart-text09">450.00</span>
+            <span className="cart-text08">450.00</span>
           </span>
           <span className="cart-tax-amount">
             <span>$ 0.00</span>
@@ -185,16 +185,9 @@ const Cart = (props) => {
               className="cart-card-name input"
             />
           </div>
-          <div className="cart-cvc">
-            <input
-              type="text"
-              placeholder="placeholder"
-              className="cart-cvc1 input"
-            />
-          </div>
           <div className="cart-clear-cart-button">
             <button type="button" className="cart-clear-button button">
-              <span className="cart-text14">
+              <span className="cart-text13">
                 <span>Clear</span>
                 <br></br>
               </span>
@@ -205,21 +198,23 @@ const Cart = (props) => {
             src="/external/vector1550-yoz7.svg"
             className="cart-vector1"
           />
-          <div className="cart-cvc2">
+          <div className="cart-cvc">
             <input
               type="text"
               placeholder="placeholder"
-              className="cart-cvc3 input"
+              className="cart-cvc1 input"
             />
           </div>
           <div className="cart-container1">
-            <img
-              alt="image"
-              src="/external/94601b53-60d5-43cb-a8b6-bd38912f9a45-1200w.jpg"
-              className="cart-image"
-            />
-            <div className="cart-container2"></div>
+            <div className="cart-container2">
+              <div className="cart-container3"></div>
+            </div>
           </div>
+          <img
+            alt="image"
+            src="/external/94601b53-60d5-43cb-a8b6-bd38912f9a45-1500w.jpg"
+            className="cart-image"
+          />
           <div className="cart-receipt-page-link">
             <Link to="/reciept" className="cart-link-to-receipt-page">
               <span>Reservation</span>
@@ -235,13 +230,13 @@ const Cart = (props) => {
         </div>
       </div>
       <footer className="footerContainer cart-footer">
-        <div className="cart-container3">
+        <div className="cart-container4">
           <span className="logo">MOTELLY</span>
           <nav className="cart-nav1"></nav>
         </div>
         <div className="cart-separator"></div>
-        <div className="cart-container4">
-          <span className="bodySmall cart-text21">
+        <div className="cart-container5">
+          <span className="bodySmall cart-text20">
             © 2023 myCompany, All Rights Reserved.
           </span>
           <div className="cart-icon-group1">

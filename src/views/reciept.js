@@ -346,9 +346,6 @@ const Reciept = (props) => {
           </button>
         </div>
       </div>
-      <div className="reciept-faq">
-        <div className="reciept-faq-container faqContainer"></div>
-      </div>
       <footer className="footerContainer reciept-footer">
         <div className="reciept-container3">
           <span className="logo">MOTELLY</span>

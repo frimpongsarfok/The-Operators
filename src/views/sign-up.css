@@ -371,23 +371,25 @@
 .sign-up-frame57 {
   gap: 10px;
   width: 147px;
-  border: 2px dashed rgba(120, 120, 120, 0.4);
   height: auto;
   display: flex;
   padding: 0 0 64px;
   align-items: flex-start;
   flex-shrink: 0;
+  border-color: #787878;
+  border-style: dashed;
+  border-width: 0px;
   margin-right: var(--dl-space-space-sixunits);
 }
 .sign-up-container2 {
-  width: 100%;
+  width: 1920px;
   border: 2px dashed rgba(120, 120, 120, 0.4);
-  height: 991px;
+  height: 1675px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   background-size: cover;
-  background-image: url("/eaaf8151-89e3-401a-84bc-f53ab5ddd004-1500w.jpg");
+  background-image: url("/eaaf8151-89e3-401a-84bc-f53ab5ddd004-2000w.jpg");
 }
 .sign-up-text06 {
   top: -153px;
