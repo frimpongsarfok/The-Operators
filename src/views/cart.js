@@ -5,7 +5,16 @@ import { Helmet } from 'react-helmet'
 
 import './cart.css'
 
+import { useCookies } from 'react-cookie'
+
 const Cart = (props) => {
+  
+  const [cookies, setCookies, removeCookies] = useCookies(['cart'])
+  const roomprice = cookies.cart===1 ? 450:cookies.cart===2 ?400:cookies.cart===3?350:cookies.cart===4?300:0
+  const tax = roomprice * 0.1
+  const total = roomprice + tax
+  const roomtype=["","The Oceanfront Retreat / Diamond","The Beachside Breeze / Gold","The Coastl Escape / Silver","The Sand Dollar Haven / Bronze"]
+
   return (
     <div className="cart-container">
       <Helmet>
@@ -103,11 +112,12 @@ const Cart = (props) => {
               Let’s Make        Payment
             </span>
             <span className="cart-payment-subtitle-1">
-              <span>Cardholder’s Name</span>
+              <span>Cardholder's Info</span>
             </span>
             <span className="cart-payment-subtitle-2">
               <span>Card Number</span>
             </span>
+            
             <span className="cart-payment-subtitle-3">
               <span>Expiry</span>
             </span>
@@ -131,27 +141,29 @@ const Cart = (props) => {
             <span>You’re paying,</span>
           </span>
           <span className="cart-room">
-            <span>Custom Gucci Shoes</span>
+            <span>{roomtype[cookies.cart]}</span>
           </span>
           <span className="cart-room-price">
-            <span>$ 400.00</span>
+            <span>$ {roomprice}</span>
           </span>
           <span className="cart-total-price2">
             <span>
-              $
+              $ {roomprice}
               <span
                 dangerouslySetInnerHTML={{
                   __html: ' ',
                 }}
               />
             </span>
-            <span className="cart-text08">450.00</span>
+            <span className="cart-text08">{
+              
+            }</span>
           </span>
           <span className="cart-tax-amount">
-            <span>$ 0.00</span>
+            <span>$ {tax}</span>
           </span>
           <span className="cart-total-price1">
-            <span>$ 450.00</span>
+            <span>$ {total}</span>
           </span>
           <span className="cart-totallabel">
             <span>Total</span>
@@ -159,51 +171,60 @@ const Cart = (props) => {
           <span className="cart-tax-label">
             <span>Tax</span>
           </span>
+          <form className="cart-form" method='GET' action='/reciept'>
           <div className="cart-expiry">
-            <input
-              type="text"
+            <input required
+              type="date"
               placeholder="placeholder"
               className="cart-exp-date input"
             />
           </div>
           <div className="cart-checkout-button">
-            <Link to="/reciept" className="cart-pay-button button">
+            <button className="cart-pay-button button">
               Pay
-            </Link>
+            </button>
           </div>
           <div className="cart-card-number">
-            <input
-              type="text"
+            <input required
+              type="number"
               placeholder="placeholder"
               className="cart-card-number1 input"
             />
           </div>
           <div className="cart-card-holders-name">
-            <input
+            <input required
               type="text"
-              placeholder="placeholder"
+              placeholder="card holder's name"
+              className="cart-card-name input"
+            />
+             <input required 
+              type="email"
+              placeholder="email address"
               className="cart-card-name input"
             />
           </div>
+          
           <div className="cart-clear-cart-button">
-            <button type="button" className="cart-clear-button button">
+            <button type="button" className="cart-clear-button button" onClick={()=>removeCookies("cart", {path:"/"})}>
               <span className="cart-text13">
                 <span>Clear</span>
                 <br></br>
               </span>
             </button>
           </div>
+          
           <img
             alt="Vector1550"
             src="/external/vector1550-yoz7.svg"
             className="cart-vector1"
           />
           <div className="cart-cvc">
-            <input
-              type="text"
+            <input required
+              type="number"
               placeholder="placeholder"
               className="cart-cvc1 input"
             />
+            
           </div>
           <div className="cart-container1">
             <div className="cart-container2">
@@ -215,6 +236,7 @@ const Cart = (props) => {
             src="/external/94601b53-60d5-43cb-a8b6-bd38912f9a45-1500w.jpg"
             className="cart-image"
           />
+          </form>
           <div className="cart-receipt-page-link">
             <Link to="/reciept" className="cart-link-to-receipt-page">
               <span>Reservation</span>

@@ -6,8 +6,10 @@ import { Helmet } from 'react-helmet'
 import FeatureCard from '../components/feature-card'
 import Question1 from '../components/question1'
 import './home.css'
+import { useCookies } from 'react-cookie'
 
 const Home = (props) => {
+  const [cookies, setCookies, removeCookies] = useCookies(['cart'])
   return (
     <div className="home-container">
       <Helmet>
@@ -26,7 +28,7 @@ const Home = (props) => {
                 Rooms
               </Link>
               <Link to="/cart" className="home-cart-link bodySmall">
-                Cart
+                Cart {cookies.cart&& <div style={{width:10,height:10,borderRadius:5,marginLeft:10,background:"red"}}></div>}
               </Link>
             </nav>
             <div className="home-buttons">

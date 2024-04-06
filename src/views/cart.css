@@ -309,7 +309,7 @@
   color: rgba(0, 0, 0, 1);
   height: auto;
   position: absolute;
-  font-size: 26px;
+  font-size: 20px;
   font-style: Bold;
   text-align: left;
   font-family: Inter;
@@ -324,7 +324,7 @@
   color: rgba(0, 0, 0, 1);
   height: auto;
   position: absolute;
-  font-size: 24px;
+  font-size: 28px;
   font-style: Medium;
   text-align: left;
   font-family: Inter;
@@ -339,11 +339,11 @@
   color: rgb(0, 0, 0);
   height: auto;
   position: absolute;
-  font-size: 24px;
+  font-size: 30px;
   font-style: Medium;
   text-align: left;
   font-family: "Inter";
-  font-weight: 500;
+  font-weight: 700;
   line-height: normal;
   font-stretch: normal;
   text-decoration: none;
@@ -442,9 +442,10 @@
   color: var(--dl-color-gray-white);
   width: 122px;
   height: 34px;
-  font-size: 28px;
+  font-size: 26px;
   text-decoration: none;
   background-color: #f5a034;
+  padding-bottom: 40px;
 }
 .cart-card-number {
   top: 555px;
@@ -492,10 +493,12 @@
   color: var(--dl-color-gray-white) #000000;
   width: 122px;
   height: 30px;
-  font-size: 30px;
+  padding-bottom: 30px;
+  font-size: 20px;
   border-color: rgba(8, 8, 8, 0.94);
   border-width: 1px;
   background-color: rgb(245, 160, 52);
+  margin-bottom: 40;
 }
 .cart-text13 {
   color: #ffffff;

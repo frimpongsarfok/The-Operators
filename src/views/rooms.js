@@ -5,8 +5,18 @@ import { Helmet } from 'react-helmet'
 
 import Question14 from '../components/question14'
 import './rooms.css'
-
+import {useCookies} from 'react-cookie'
 const Rooms = (props) => {
+  const [rooms, setRooms] = React.useState({"diamond": 0, "gold": 0, "silver": 0})
+  const [cookies, setCookies, removeCookies] = useCookies(['cart'])
+  //  fetch('http://localhost:5001/room/1', {
+  //   method: 'GET',
+  //   // No need to set Content-Type for GET requests, and Access-Control-Allow-Origin is handled by the server.
+  // })
+  //   .then(response => response.json())
+  //   .then(data => setRooms({"diamond":data.available_rooms})
+  //   .catch((error) => console.error('Error:', error)));
+
   return (
     <div className="rooms-container">
       <Helmet>
@@ -26,6 +36,7 @@ const Rooms = (props) => {
               </Link>
               <Link to="/cart" className="rooms-cart-link bodySmall">
                 Cart
+                {cookies.cart&& <div style={{width:10,height:10,borderRadius:5,marginLeft:10,background:"red"}}></div>}
               </Link>
             </nav>
             <div className="rooms-buttons">
@@ -177,7 +188,7 @@ const Rooms = (props) => {
             <div className="rooms-container02">
               <div className="rooms-container03">
                 <span className="rooms-room-1-price">----</span>
-                <span className="rooms-room-1-availability">*</span>
+                <span className="rooms-room-1-availability">{rooms.diamond}</span>
               </div>
               <h1 className="rooms-room-1-title">The Oceanfront Retreat</h1>
               <span className="rooms-room-1-description">
@@ -196,7 +207,42 @@ const Rooms = (props) => {
                   />
                   <span className="rooms-text14">Diamond Tier</span>
                 </div>
-                <button type="button" className="rooms-book-r1 button">
+                <button
+                  type="button"
+                  className="rooms-book-r1 button"
+                  onClick={async () => {
+                    
+
+                    // const resp = await fetch('http://localhost:5001/room/1', {
+                    //   method: 'GET',
+                    //   // No need to set Content-Type for GET requests, and Access-Control-Allow-Origin is handled by the server.
+                    // })
+                    //   .then(response => response.json())
+                    //   .then(data => setRooms({"diamond":data.available_rooms}))
+                    //   .catch((error) => console.error('Error:', error));
+
+
+                    // if (rooms.diamond > 0) {
+                    //   const resp1 = await fetch('http://localhost:5001/room/1', {
+                    //     method: 'PUT',
+                    //     headers: {
+                    //       'Content-Type': 'application/json',
+                    //     },
+                    //     body: JSON.stringify({ available_rooms: rooms - 1 }),
+                    //   })
+                    //     .then(response => response.json())
+                    //     .then(data => alert('Room booked successfully'))
+                    //     .catch((error) => alert('Error:', error));
+                    // } else {
+                    //   alert('No rooms left')
+                    // }
+
+                    setCookies('cart', 1,{path: '/'})
+                  }
+
+                  }
+                >
+
                   <span>
                     <span>Book</span>
                     <br></br>
@@ -235,7 +281,14 @@ const Rooms = (props) => {
                   />
                   <span className="rooms-text18">Gold Tier</span>
                 </div>
-                <button type="button" className="button">
+                <button type="button" className="button" onClick={async () => {
+                    
+
+                 
+                    setCookies('cart', 2,{path: '/'})
+                  }
+
+                  }>
                   Book
                 </button>
               </div>
@@ -270,7 +323,14 @@ const Rooms = (props) => {
                 />
                 <span className="rooms-text19">Silver Tier</span>
               </div>
-              <button type="button" className="button">
+              <button type="button" className="button" onClick={async () => {
+                    
+
+                 
+                    setCookies('cart', 3,{path: '/'})
+                  }
+
+                  }>
                 <span>
                   <span>Book</span>
                   <br></br>
@@ -309,7 +369,11 @@ const Rooms = (props) => {
                 />
                 <span className="rooms-text23">Copper Tier</span>
               </div>
-              <button type="button" className="button">
+              <button type="button" className="button" onClick={async () => {
+                    setCookies('cart', 4,{path: '/'})
+                  }
+
+                  }>
                 <span>
                   <span>Book</span>
                   <br></br>
