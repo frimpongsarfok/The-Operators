@@ -7,10 +7,8 @@ from flask_cors import CORS
 import uuid
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy   dog'
-app.config['CORS_HEADERS'] = 'Content-Type'
-CORS(app, origins={"origins": ["http://localhost:3001"]})  # Add closing parenthesis here
-CORS(app, supports_credentials=True) 
+CORS(app)  # Add closing parenthesis here
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/kantanka/Desktop/The-Operators-1/backend/instance/mydatabase.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -121,13 +119,16 @@ def create_room():
 
 @app.route('/room/<int:room_id>', methods=['GET'])
 def get_room(room_id):
-    room = Room.query.get_or_404(room_id)
-    return jsonify({
-        'id': room.id,
-        'price': room.price,
-        'type': room.type,
-        'available_rooms': room.available_rooms
-    }), 200
+    try:
+        room = Room.query.get(room_id)
+        return jsonify({
+            'id': room.id,
+            'price': room.price,
+            'type': room.type,
+            'available_rooms': room.available_rooms
+        }), 200
+    except Exception:
+        return jsonify({'message': 'Room not found'}), 404
 
 
 @app.route('/cart', methods=['POST'])
@@ -150,7 +151,18 @@ def add_to_cart():
     db.session.commit()
     return jsonify({'message': 'Room added to cart successfully'}), 201
 
+@app.route('/room/<int:room_id>', methods=['PUT'])
+def update_room(room_id):
+    data = request.json
+    if not data or 'available_rooms' not in data:
+        return jsonify({'message': 'Missing data'}), 400
 
+    room = Room.query.get(room_id)
+    if not room:
+        return jsonify({'message': 'Room not found'}), 404
+    room.available_rooms = data['available_rooms']
+    db.session.commit()
+    return jsonify({'message': 'Room updated successfully'}), 200
 # Implementation for reading, updating, and deleting cart items can be added here
 
 
@@ -206,4 +218,4 @@ def get_receipt(ref_number):
 
 # Run the Flask application
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=5001)
