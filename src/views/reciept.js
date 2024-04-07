@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
 import { Helmet } from 'react-helmet'
 
 import './reciept.css'
 
 const Reciept = (props) => {
+  const ref_number = new URLSearchParams(document.location.search).get('ref_number')
+ useEffect(() => {  
+  if (ref_number) {
+      fetch('http://127.0.0.1:5001/receipt?ref_number='+ref_number,{
+        method: 'GET',
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            console.log(data)
+          })
+        }
+      })
+
+    }
+  }, [ref_number])
   return (
     <div className="reciept-container">
       <Helmet>
