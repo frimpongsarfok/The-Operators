@@ -7,9 +7,9 @@ import './reciept.css'
 const Reciept = (props) => {
   const [receipt, setReceipt] = useState({})
   const ref_number = new URLSearchParams(document.location.search).get('ref_number')
- useEffect(() => {  
-  if (ref_number) {
-      fetch('http://127.0.0.1:5001/receipt?ref_number='+ref_number,{
+  useEffect(() => {
+    if (ref_number) {
+      fetch('http://127.0.0.1:5001/receipt?ref_number=' + ref_number, {
         method: 'GET',
       }).then((res) => {
         if (res.ok) {
@@ -187,7 +187,7 @@ const Reciept = (props) => {
       </div>
       <div className="reciept-container2">
         <div className="reciept-receipt">
-       
+
         </div>
         <div className="reciept-receipt-card">
           <div className="reciept-header-text">
@@ -231,6 +231,14 @@ const Reciept = (props) => {
                 </span>
                 <span className="reciept-user-name">
                   <span>{receipt.user_email}</span>
+                </span>
+              </div>
+              <div className="reciept-payment-detail2">
+                <span className="reciept-text25">
+                  <span>Status</span>
+                </span>
+                <span className="reciept-user-name">
+                  <span>{receipt.status}</span>
                 </span>
               </div>
             </div>
@@ -350,7 +358,22 @@ const Reciept = (props) => {
               </span>
             </span>
           </span>
-          <button className="reciept-cancel buttonFilled">
+          <button className="reciept-cancel buttonFilled" onClick={() => {
+            fetch("http://localhost:5001/cancel", {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                ref_number: ref_number
+              })}).then((res) => {
+                if (res.ok) {
+                  res.json().then((data) => {
+                    alert(data.message)
+                  })
+                }
+              })
+          }}>
             <span>
               <span>Cancel Order</span>
               <br></br>
