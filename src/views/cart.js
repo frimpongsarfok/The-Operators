@@ -209,7 +209,7 @@ const Cart = (props) => {
                     }).then(res => res.json()).then(data => {
                      console.log(data)
                       if (data.message === 'Checkout successful') {
-                        console.log(data)
+                        removeCookies("cart", { path: "/" })
                         window.location.href = '/reciept?ref_number=' + data.ref_number;
                       }
                     });
