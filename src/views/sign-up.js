@@ -2,10 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Helmet } from 'react-helmet'
-
+import { useCookies } from 'react-cookie'
 import './sign-up.css'
 
 const SignUp = (props) => {
+  const [cookies, setCookies, removeCookies] = useCookies(['cart'])
   return (
     <div className="sign-up-container">
       <Helmet>
@@ -28,6 +29,7 @@ const SignUp = (props) => {
               </Link>
               <Link to="/cart" className="sign-up-cart-link bodySmall">
                 Cart
+                {cookies.cart&& <div style={{width:10,height:10,borderRadius:5,marginLeft:10,background:"red"}}></div>}
               </Link>
             </nav>
             <div className="sign-up-buttons">

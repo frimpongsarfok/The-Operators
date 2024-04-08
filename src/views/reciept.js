@@ -2,10 +2,12 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { useState } from 'react'
+import { useCookies } from 'react-cookie'
 import './reciept.css'
 
 const Reciept = (props) => {
   const [receipt, setReceipt] = useState({})
+  const [cookies, setCookies, removeCookies] = useCookies(['cart'])
   const ref_number = new URLSearchParams(document.location.search).get('ref_number')
   useEffect(() => {
     if (ref_number) {
@@ -44,6 +46,7 @@ const Reciept = (props) => {
               </Link>
               <Link to="/cart" className="reciept-cart-link bodySmall">
                 Cart
+                {cookies.cart&& <div style={{width:10,height:10,borderRadius:5,marginLeft:10,background:"red"}}></div>}
               </Link>
             </nav>
             <div className="reciept-buttons">
