@@ -211,6 +211,8 @@ const Cart = (props) => {
                       if (data.message === 'Checkout successful') {
                         removeCookies("cart", { path: "/" })
                         window.location.href = '/reciept?ref_number=' + data.ref_number;
+                      }else{
+                        alert(data.message+' Please try again')
                       }
                     });
 
