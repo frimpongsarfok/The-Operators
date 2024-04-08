@@ -9,13 +9,18 @@ import {useCookies} from 'react-cookie'
 const Rooms = (props) => {
   const [rooms, setRooms] = React.useState({"diamond": 0, "gold": 0, "silver": 0})
   const [cookies, setCookies, removeCookies] = useCookies(['cart'])
-  //  fetch('http://localhost:5001/room/1', {
-  //   method: 'GET',
-  //   // No need to set Content-Type for GET requests, and Access-Control-Allow-Origin is handled by the server.
-  // })
-  //   .then(response => response.json())
-  //   .then(data => setRooms({"diamond":data.available_rooms})
-  //   .catch((error) => console.error('Error:', error)));
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const resp = await fetch('http://localhost:5001/room/1', {
+        method: 'GET',
+        // No need to set Content-Type for GET requests, and Access-Control-Allow-Origin is handled by the server.
+      })
+        .then(response => response.json())
+        .then(data => setRooms({"diamond":data.available_rooms}))
+        .catch((error) => console.error('Error:', error));
+    }
+    fetchData()
+  }, [])
 
   return (
     <div className="rooms-container">
