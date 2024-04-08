@@ -7,16 +7,16 @@ import Question14 from '../components/question14'
 import './rooms.css'
 import {useCookies} from 'react-cookie'
 const Rooms = (props) => {
-  const [rooms, setRooms] = React.useState({"diamond": 0, "gold": 0, "silver": 0})
+  const [rooms, setRooms] = React.useState({"diamond": 0, "gold": 0, "silver": 0, "copper": 0})
   const [cookies, setCookies, removeCookies] = useCookies(['cart'])
   React.useEffect(() => {
     const fetchData = async () => {
-      const resp = await fetch('http://localhost:5001/room/1', {
+      const resp = await fetch('http://localhost:5001/available_rooms', {
         method: 'GET',
         // No need to set Content-Type for GET requests, and Access-Control-Allow-Origin is handled by the server.
       })
         .then(response => response.json())
-        .then(data => setRooms({"diamond":data.available_rooms}))
+        .then(data => setRooms({"diamond":data[0].available_rooms,"gold":data[1].available_rooms,"silver":data[2].available_rooms, "copper":data[3].available_rooms}))
         .catch((error) => console.error('Error:', error));
     }
     fetchData()
@@ -193,7 +193,7 @@ const Rooms = (props) => {
             <div className="rooms-container02">
               <div className="rooms-container03">
                 <span className="rooms-room-1-price">----</span>
-                <span className="rooms-room-1-availability">{rooms.diamond}</span>
+      
               </div>
               <h1 className="rooms-room-1-title">The Oceanfront Retreat</h1>
               <span className="rooms-room-1-description">
@@ -210,38 +210,13 @@ const Rooms = (props) => {
                     src="/249c89d8-bc27-499a-9eee-75ac6c88d9af-200h.jpg"
                     className="rooms-image1"
                   />
-                  <span className="rooms-text14">Diamond Tier</span>
+                  <span className="rooms-text14">Diamond Tier : {rooms.diamond}</span>
                 </div>
                 <button
                   type="button"
                   className="rooms-book-r1 button"
                   onClick={async () => {
                     
-
-                    // const resp = await fetch('http://localhost:5001/room/1', {
-                    //   method: 'GET',
-                    //   // No need to set Content-Type for GET requests, and Access-Control-Allow-Origin is handled by the server.
-                    // })
-                    //   .then(response => response.json())
-                    //   .then(data => setRooms({"diamond":data.available_rooms}))
-                    //   .catch((error) => console.error('Error:', error));
-
-
-                    // if (rooms.diamond > 0) {
-                    //   const resp1 = await fetch('http://localhost:5001/room/1', {
-                    //     method: 'PUT',
-                    //     headers: {
-                    //       'Content-Type': 'application/json',
-                    //     },
-                    //     body: JSON.stringify({ available_rooms: rooms - 1 }),
-                    //   })
-                    //     .then(response => response.json())
-                    //     .then(data => alert('Room booked successfully'))
-                    //     .catch((error) => alert('Error:', error));
-                    // } else {
-                    //   alert('No rooms left')
-                    // }
-
                     setCookies('cart', 1,{path: '/'})
                   }
 
@@ -284,7 +259,7 @@ const Rooms = (props) => {
                     src="/6e56e05d-0ef8-45c8-855d-a4528686e96d-200h.jpg"
                     className="rooms-image3"
                   />
-                  <span className="rooms-text18">Gold Tier</span>
+                  <span className="rooms-text18">Gold Tier : {rooms.gold}</span>
                 </div>
                 <button type="button" className="button" onClick={async () => {
                     
@@ -326,7 +301,7 @@ const Rooms = (props) => {
                   src="/19017ccf-047b-4879-8aee-587000275db3-200h.jpg"
                   className="rooms-image5"
                 />
-                <span className="rooms-text19">Silver Tier</span>
+                <span className="rooms-text19">Silver Tier : {rooms.silver}</span>
               </div>
               <button type="button" className="button" onClick={async () => {
                     
@@ -372,7 +347,7 @@ const Rooms = (props) => {
                   src="/8f5635cb-fc7b-4358-ae12-780ad2559c41-200h.jpg"
                   className="rooms-image7"
                 />
-                <span className="rooms-text23">Copper Tier</span>
+                <span className="rooms-text23">Copper Tier : {rooms.copper}</span>
               </div>
               <button type="button" className="button" onClick={async () => {
                     setCookies('cart', 4,{path: '/'})

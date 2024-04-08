@@ -8,12 +8,12 @@ import './cart.css'
 import { useCookies } from 'react-cookie'
 
 const Cart = (props) => {
-  
+
   const [cookies, setCookies, removeCookies] = useCookies(['cart'])
-  const roomprice = cookies.cart===1 ? 450:cookies.cart===2 ?400:cookies.cart===3?350:cookies.cart===4?300:0
+  const roomprice = cookies.cart === 1 ? 450 : cookies.cart === 2 ? 400 : cookies.cart === 3 ? 350 : cookies.cart === 4 ? 300 : 0
   const tax = roomprice * 0.1
   const total = roomprice + tax
-  const roomtype=["","The Oceanfront Retreat / Diamond","The Beachside Breeze / Gold","The Coastl Escape / Silver","The Sand Dollar Haven / Bronze"]
+  const roomtype = ["", "The Oceanfront Retreat / Diamond", "The Beachside Breeze / Gold", "The Coastl Escape / Silver", "The Sand Dollar Haven / Bronze"]
 
   return (
     <div className="cart-container">
@@ -117,7 +117,7 @@ const Cart = (props) => {
             <span className="cart-payment-subtitle-2">
               <span>Card Number</span>
             </span>
-            
+
             <span className="cart-payment-subtitle-3">
               <span>Expiry</span>
             </span>
@@ -156,7 +156,7 @@ const Cart = (props) => {
               />
             </span>
             <span className="cart-text08">{
-              
+
             }</span>
           </span>
           <span className="cart-tax-amount">
@@ -172,70 +172,115 @@ const Cart = (props) => {
             <span>Tax</span>
           </span>
           <form className="cart-form" method='GET' action='/reciept'>
-          <div className="cart-expiry">
-            <input required
-              type="date"
-              placeholder="placeholder"
-              className="cart-exp-date input"
-            />
-          </div>
-          <div className="cart-checkout-button">
-            <button className="cart-pay-button button">
-              Pay
-            </button>
-          </div>
-          <div className="cart-card-number">
-            <input required
-              type="number"
-              placeholder="placeholder"
-              className="cart-card-number1 input"
-            />
-          </div>
-          <div className="cart-card-holders-name">
-            <input required
-              type="text"
-              placeholder="card holder's name"
-              className="cart-card-name input"
-            />
-             <input required 
-              type="email"
-              placeholder="email address"
-              className="cart-card-name input"
-            />
-          </div>
-          
-          <div className="cart-clear-cart-button">
-            <button type="button" className="cart-clear-button button" onClick={()=>removeCookies("cart", {path:"/"})}>
-              <span className="cart-text13">
-                <span>Clear</span>
-                <br></br>
-              </span>
-            </button>
-          </div>
-          
-          <img
-            alt="Vector1550"
-            src="/external/vector1550-yoz7.svg"
-            className="cart-vector1"
-          />
-          <div className="cart-cvc">
-            <input required
-              type="number"
-              placeholder="placeholder"
-              className="cart-cvc1 input"
-            />
-            
-          </div>
-          <div className="cart-container1">
-            <div className="cart-container2">
-              <div className="cart-container3"></div>
+            <div className="cart-expiry">
+              <input required
+                id='expiry_date'
+                type="date"
+                placeholder="placeholder"
+                className="cart-exp-date input"
+              />
             </div>
-          </div>
-          <img
-            alt="image"
-            src="/external/94601b53-60d5-43cb-a8b6-bd38912f9a45-1500w.jpg"
-            className="cart-image"
-          />
+            <div className="cart-checkout-button">
+              <button className="cart-pay-button button" onClick={() => {
+                const form = document.querySelector('.cart-form')
+                form.addEventListener('submit', (e) => {
+                  e.preventDefault()
+                  const room_type = cookies.cart
+                  const card_number = document.getElementById('card_number').value
+                  const card_name = document.getElementById('card_name').value
+                  const expiry = document.getElementById('expiry_date').value
+                  const cvc = document.getElementById('cvc').value
+                  const email = document.getElementById('email').value
+                  if (card_number && card_name && expiry && cvc && email) {
+                    const checkout_data = {
+                      room_id:room_type,
+                      card_number:card_number,
+                      card_holder_name:card_name,
+                      expiration_date:expiry,
+                      cvc:cvc,
+                      email:email
+                    };
+                    fetch('http://localhost:5001/checkout', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify(checkout_data)
+                    }).then(res => res.json()).then(data => {
+                     console.log(data)
+                      if (data.message === 'Checkout successful') {
+                        removeCookies("cart", { path: "/" })
+                        window.location.href = '/reciept?ref_number=' + data.ref_number;
+                      }else{
+                        alert(data.message+' Please try again')
+                      }
+                    });
+
+                  } else {
+                    alert('Please fill all the fields')
+                  }
+                });
+              }}>
+                Pay
+              </button>
+            </div>
+
+            <div className="cart-card-number">
+              <input required
+                id='card_number'
+                type="number"
+                placeholder="placeholder"
+                className="cart-card-number1 input"
+              />
+            </div>
+            <div className="cart-card-holders-name">
+              <input required
+                id='card_name'
+                type="text"
+                placeholder="card holder's name"
+                className="cart-card-name input"
+              />
+              <input required
+                id='email'
+                type="email"
+                placeholder="email address"
+                className="cart-card-name input"
+              />
+            </div>
+
+            <div className="cart-clear-cart-button">
+              <button type="button" className="cart-clear-button button" onClick={() => removeCookies("cart", { path: "/" })}>
+                <span className="cart-text13">
+                  <span>Clear</span>
+                  <br></br>
+                </span>
+              </button>
+            </div>
+
+            <img
+              alt="Vector1550"
+              src="/external/vector1550-yoz7.svg"
+              className="cart-vector1"
+            />
+            <div className="cart-cvc">
+              <input required
+                id='cvc'
+                type="number"
+                placeholder="placeholder"
+                className="cart-cvc1 input"
+              />
+
+            </div>
+            <div className="cart-container1">
+              <div className="cart-container2">
+                <div className="cart-container3"></div>
+              </div>
+            </div>
+            <img
+              alt="image"
+              src="/external/94601b53-60d5-43cb-a8b6-bd38912f9a45-1500w.jpg"
+              className="cart-image"
+            />
           </form>
           <div className="cart-receipt-page-link">
             <Link to="/reciept" className="cart-link-to-receipt-page">

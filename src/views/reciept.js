@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
 import { Helmet } from 'react-helmet'
-
+import { useState } from 'react'
+import { useCookies } from 'react-cookie'
 import './reciept.css'
 
 const Reciept = (props) => {
+  const [receipt, setReceipt] = useState({})
+  const [cookies, setCookies, removeCookies] = useCookies(['cart'])
+  const ref_number = new URLSearchParams(document.location.search).get('ref_number')
+  useEffect(() => {
+    if (ref_number) {
+      fetch('http://127.0.0.1:5001/receipt?ref_number=' + ref_number, {
+        method: 'GET',
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            setReceipt(data)
+            console.log(data)
+          })
+        }
+      })
+
+    }
+  }, [ref_number])
   return (
     <div className="reciept-container">
       <Helmet>
@@ -28,6 +46,7 @@ const Reciept = (props) => {
               </Link>
               <Link to="/cart" className="reciept-cart-link bodySmall">
                 Cart
+                {cookies.cart&& <div style={{width:10,height:10,borderRadius:5,marginLeft:10,background:"red"}}></div>}
               </Link>
             </nav>
             <div className="reciept-buttons">
@@ -171,11 +190,7 @@ const Reciept = (props) => {
       </div>
       <div className="reciept-container2">
         <div className="reciept-receipt">
-          <img
-            alt="Subtract2106"
-            src="/external/subtract2106-h0yt.svg"
-            className="reciept-subtract"
-          />
+
         </div>
         <div className="reciept-receipt-card">
           <div className="reciept-header-text">
@@ -195,7 +210,7 @@ const Reciept = (props) => {
             <span className="reciept-text18">
               <span>Total Payment</span>
             </span>
-            <span className="reciept-amount-paid">$1,000,000</span>
+            <span className="reciept-amount-paid">${receipt.room_price}</span>
           </div>
           <div className="reciept-payment-details">
             <div className="reciept-row1">
@@ -204,7 +219,7 @@ const Reciept = (props) => {
                   <span>Ref Number</span>
                 </span>
                 <span className="reciept-identification">
-                  <span>000085752257</span>
+                  <span>{receipt.ref_number}</span>
                 </span>
               </div>
             </div>
@@ -215,10 +230,18 @@ const Reciept = (props) => {
               </div>
               <div className="reciept-payment-detail2">
                 <span className="reciept-text25">
-                  <span>Sender Name</span>
+                  <span>Email:</span>
                 </span>
                 <span className="reciept-user-name">
-                  <span>Antonio Roberto</span>
+                  <span>{receipt.user_email}</span>
+                </span>
+              </div>
+              <div className="reciept-payment-detail2">
+                <span className="reciept-text25">
+                  <span>Status</span>
+                </span>
+                <span className="reciept-user-name">
+                  <span>{receipt.status}</span>
                 </span>
               </div>
             </div>
@@ -338,7 +361,22 @@ const Reciept = (props) => {
               </span>
             </span>
           </span>
-          <button className="reciept-cancel buttonFilled">
+          <button className="reciept-cancel buttonFilled" onClick={() => {
+            fetch("http://localhost:5001/cancel", {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                ref_number: ref_number
+              })}).then((res) => {
+                if (res.ok) {
+                  res.json().then((data) => {
+                    alert(data.message)
+                  })
+                }
+              })
+          }}>
             <span>
               <span>Cancel Order</span>
               <br></br>
